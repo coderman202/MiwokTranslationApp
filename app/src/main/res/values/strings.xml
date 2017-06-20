@@ -1,0 +1,219 @@
+<!-- Copyright (C) 2016 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <!-- Title for the application. [CHAR LIMIT=12] -->
+    <string name="app_name" translatable="false">Miwok</string>
+
+    <!-- Category name for phrases [CHAR LIMIT=20] -->
+    <string name="category_phrases">Phrases</string>
+
+    <string name="phrase_1">Where are you going?</string>
+    <string name="phrase_2">What is your name?</string>
+    <string name="phrase_3">My name is;&#8230;</string>
+    <string name="phrase_4">How are you feeling?</string>
+    <string name="phrase_5">I’m feeling good.</string>
+    <string name="phrase_6">Are you coming?</string>
+    <string name="phrase_7">Yes, I’m coming.</string>
+    <string name="phrase_8">I’m coming.</string>
+    <string name="phrase_9">Let’s go.</string>
+    <string name="phrase_10">Come here.</string>
+
+    <string-array name="phrases_list">
+        <item>@string/phrase_1</item>
+        <item>@string/phrase_2</item>
+        <item>@string/phrase_3</item>
+        <item>@string/phrase_4</item>
+        <item>@string/phrase_5</item>
+        <item>@string/phrase_6</item>
+        <item>@string/phrase_7</item>
+        <item>@string/phrase_8</item>
+        <item>@string/phrase_9</item>
+        <item>@string/phrase_10</item>
+    </string-array>
+
+    <string name="miwok_phrase_1">minto wuksus</string>
+    <string name="miwok_phrase_2">tinnә oyaase\'nә</string>
+    <string name="miwok_phrase_3">oyaaset;&#8230;</string>
+    <string name="miwok_phrase_4">michәksәs?</string>
+    <string name="miwok_phrase_5">kuchi achit</string>
+    <string name="miwok_phrase_6">әәnәs\'aa?</string>
+    <string name="miwok_phrase_7">hәә’ әәnәm</string>
+    <string name="miwok_phrase_8">әәnәm</string>
+    <string name="miwok_phrase_9">yoowutis</string>
+    <string name="miwok_phrase_10">әnni\'nem</string>
+
+    <string-array name="miwok_phrases_list">
+        <item>@string/miwok_phrase_1</item>
+        <item>@string/miwok_phrase_2</item>
+        <item>@string/miwok_phrase_3</item>
+        <item>@string/miwok_phrase_4</item>
+        <item>@string/miwok_phrase_5</item>
+        <item>@string/miwok_phrase_6</item>
+        <item>@string/miwok_phrase_7</item>
+        <item>@string/miwok_phrase_8</item>
+        <item>@string/miwok_phrase_9</item>
+        <item>@string/miwok_phrase_10</item>
+    </string-array>
+
+    <!-- Category name for the vocabulary words for colors [CHAR LIMIT=20] -->
+    <string name="category_colors">Colors</string>
+
+    <string name="red">red</string>
+    <string name="green">green</string>
+    <string name="brown">brown</string>
+    <string name="gray">gray</string>
+    <string name="black">black</string>
+    <string name="white">white</string>
+    <string name="dusty_yellow">dusty yellow</string>
+    <string name="mustard_yellow">mustard yellow</string>
+
+    <string-array name="colors_list">
+        <item>@string/red</item>
+        <item>@string/green</item>
+        <item>@string/brown</item>
+        <item>@string/gray</item>
+        <item>@string/black</item>
+        <item>@string/white</item>
+        <item>@string/dusty_yellow</item>
+        <item>@string/mustard_yellow</item>
+    </string-array>
+
+    <string name="weṭeṭṭi">weṭeṭṭi</string>
+    <string name="chokokki">chokokki</string>
+    <string name="ṭakaakki">ṭakaakki</string>
+    <string name="ṭopoppi">ṭopoppi</string>
+    <string name="kululli">kululli</string>
+    <string name="kelelli">kelelli</string>
+    <string name="ṭopiisә">ṭopiisә</string>
+    <string name="chiwiiṭә">chiwiiṭә</string>
+
+    <string-array name="miwok_colors_list">
+        <item>@string/weṭeṭṭi</item>
+        <item>@string/chokokki</item>
+        <item>@string/ṭakaakki</item>
+        <item>@string/ṭopoppi</item>
+        <item>@string/kululli</item>
+        <item>@string/kelelli</item>
+        <item>@string/ṭopiisә</item>
+        <item>@string/chiwiiṭә</item>
+    </string-array>
+
+    <!-- Category name for the vocabulary words for numbers [CHAR LIMIT=20] -->
+    <string name="category_numbers">Numbers</string>
+
+    <string name="one">one</string>
+    <string name="two">two</string>
+    <string name="three">three</string>
+    <string name="four">four</string>
+    <string name="five">five</string>
+    <string name="six">six</string>
+    <string name="seven">seven</string>
+    <string name="eight">eight</string>
+    <string name="nine">nine</string>
+    <string name="ten">ten</string>
+
+    <string-array name="numbers_list">
+        <item>@string/one</item>
+        <item>@string/two</item>
+        <item>@string/three</item>
+        <item>@string/four</item>
+        <item>@string/five</item>
+        <item>@string/six</item>
+        <item>@string/seven</item>
+        <item>@string/eight</item>
+        <item>@string/nine</item>
+        <item>@string/ten</item>
+    </string-array>
+
+    <string name="lutti">lutti</string>
+    <string name="otiiko">otiiko</string>
+    <string name="tolookosu">tolookosu</string>
+    <string name="oyyisa">oyyisa</string>
+    <string name="massokka">massokka</string>
+    <string name="temmokka">temmokka</string>
+    <string name="kenekaku">kenekaku</string>
+    <string name="kawinta">kawinta</string>
+    <string name="wo_e">wo\'e</string>
+    <string name="na_aacha">na\'aacha</string>
+
+    <string-array name="miwok_numbers_list">
+        <item>@string/lutti</item>
+        <item>@string/otiiko</item>
+        <item>@string/tolookosu</item>
+        <item>@string/oyyisa</item>
+        <item>@string/massokka</item>
+        <item>@string/temmokka</item>
+        <item>@string/kenekaku</item>
+        <item>@string/kawinta</item>
+        <item>@string/wo_e</item>
+        <item>@string/na_aacha</item>
+    </string-array>
+
+    <!-- Category name for the vocabulary words for family members [CHAR LIMIT=20] -->
+    <string name="category_family">Family Members</string>
+
+    <string name="father">father</string>
+    <string name="mother">mother</string>
+    <string name="son">son</string>
+    <string name="daughter">daughter</string>
+    <string name="older_brother">older brother</string>
+    <string name="younger_brother">younger brother</string>
+    <string name="older_sister">older sister</string>
+    <string name="younger_sister">younger sister</string>
+    <string name="grandmother">grandmother</string>
+    <string name="grandfather">grandfather</string>
+
+    <string-array name="family_list">
+        <item>@string/father</item>
+        <item>@string/mother</item>
+        <item>@string/son</item>
+        <item>@string/daughter</item>
+        <item>@string/older_brother</item>
+        <item>@string/younger_brother</item>
+        <item>@string/older_sister</item>
+        <item>@string/younger_sister</item>
+        <item>@string/grandmother</item>
+        <item>@string/grandfather</item>
+    </string-array>
+
+    <string name="әpә">әpә</string>
+    <string name="әṭa">әṭa</string>
+    <string name="angsi">angsi</string>
+    <string name="tune">tune</string>
+    <string name="taachi">taachi</string>
+    <string name="chalitti">chalitti</string>
+    <string name="teṭe">teṭe</string>
+    <string name="kolliti">kolliti</string>
+    <string name="ama">ama</string>
+    <string name="paapa">paapa</string>
+
+    <string-array name="miwok_family_list">
+        <item>@string/әpә</item>
+        <item>@string/әṭa</item>
+        <item>@string/angsi</item>
+        <item>@string/tune</item>
+        <item>@string/taachi</item>
+        <item>@string/chalitti</item>
+        <item>@string/teṭe</item>
+        <item>@string/kolliti</item>
+        <item>@string/ama</item>
+        <item>@string/paapa</item>
+    </string-array>
+
+    <!--Content description for any images-->
+    <string name="image_description">An image representing the text item</string>
+    <string name="play_button">The play button to listen to the audio</string>
+
+</resources>
