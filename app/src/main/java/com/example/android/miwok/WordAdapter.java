@@ -1,7 +1,6 @@
 package com.example.android.miwok;
 
 import android.content.Context;
-import android.media.MediaPlayer;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -59,37 +58,12 @@ public class WordAdapter extends ArrayAdapter<Word> {
         TextView miwokView = (TextView) listItemView.findViewById(R.id.list_item_miwok);
         ImageView imageView = (ImageView) listItemView.findViewById(R.id.image);
 
-        // Check if the word has an image and set it to invisible if not
-        if (currentWord.hasImage()) {
-            imageView.setBackgroundResource(currentWord.getImageResourceID());
-            imageView.setVisibility(View.VISIBLE);
-        } else {
-            imageView.setVisibility(View.GONE);
-            listItemView.setBackgroundColor(backgroundColor);
-        }
+        imageView.setBackgroundResource(currentWord.getImageResourceID());
+        imageView.setVisibility(View.VISIBLE);
 
         // Set the textviews to the miwok word and the translation
         translationView.setText(currentWord.getDefaultTranslation());
         miwokView.setText(currentWord.getMiwokWord());
-
-        // Now set an OnClickListener for the ListItemView which will play the audio file of the
-        // Miwok pronounciation when pressed.
-        listItemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final MediaPlayer mediaPlayer = MediaPlayer.create(getContext(), currentWord.getAudioResourceID());
-                mediaPlayer.start();
-
-                // Set an OnCompletionListener to ensure the MediaPlayer object is released after use
-                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mp) {
-                        mp.reset();
-                        mp.release();
-                    }
-                });
-            }
-        });
 
         return listItemView;
     }

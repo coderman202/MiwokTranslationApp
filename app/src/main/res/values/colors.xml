@@ -40,4 +40,16 @@
 
     <!--Color for the play button -->
     <color name="play_button_color">#FFFFFF</color>
+
+    <!--Colors for all the speech bubbles-->
+    <color name="speech_bubble_red">#D50000</color>
+    <color name="speech_bubble_blue">#0D47A1</color>
+    <color name="speech_bubble_green">#1B5E20</color>
+    <color name="speech_bubble_yellow">#FFEB3B</color>
+    <color name="speech_bubble_orange">#EF6C00</color>
+    <color name="speech_bubble_grey">#607D8B</color>
+    <color name="speech_bubble_purple">#9C27B0</color>
+    <color name="speech_bubble_pink">#E91E63</color>
+    <color name="speech_bubble_light_blue">#2196F3</color>
+    <color name="speech_bubble_brown">#5D4037</color>
 </resources>

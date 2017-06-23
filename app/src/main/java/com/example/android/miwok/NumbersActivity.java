@@ -1,8 +1,11 @@
 package com.example.android.miwok;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -46,5 +49,23 @@ public class NumbersActivity extends AppCompatActivity {
         // the {@link ArrayAdapter} created above to populate the list.
         ListView numbersListView = (ListView) findViewById(R.id.word_list);
         numbersListView.setAdapter(numbersAdapter);
+
+        // Set an OnItemClickListener to handle all clicks and play the audio files
+        numbersListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                final MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), audioResourceIDs[position]);
+                mediaPlayer.start();
+
+                // Set an OnCompletionListener to ensure the MediaPlayer object is released after use
+                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        mp.reset();
+                        mp.release();
+                    }
+                });
+            }
+        });
     }
 }

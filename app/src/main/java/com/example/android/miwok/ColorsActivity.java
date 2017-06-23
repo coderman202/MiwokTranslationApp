@@ -1,8 +1,11 @@
 package com.example.android.miwok;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -20,7 +23,7 @@ public class ColorsActivity extends AppCompatActivity {
             R.drawable.color_gray, R.drawable.color_black, R.drawable.color_white,
             R.drawable.color_dusty_yellow, R.drawable.color_mustard_yellow};
 
-    Integer[] audioFiles = {
+    Integer[] audioResourceIDs = {
             R.raw.color_red, R.raw.color_green, R.raw.color_brown,
             R.raw.color_gray, R.raw.color_black, R.raw.color_white,
             R.raw.color_dusty_yellow, R.raw.color_mustard_yellow};
@@ -34,7 +37,7 @@ public class ColorsActivity extends AppCompatActivity {
         // Store them in an ArrayList of Word objects
         colorsArray = getResources().getStringArray(R.array.colors_list);
         miworkColorsArray = getResources().getStringArray(R.array.miwok_colors_list);
-        colorsList = getWordArrayList(getWordArray(miworkColorsArray, colorsArray, colorsImages, audioFiles));
+        colorsList = getWordArrayList(getWordArray(miworkColorsArray, colorsArray, colorsImages, audioResourceIDs));
 
         // Get the background color for this category and pass it to the WordAdapter along with
         // the ArrayList
@@ -45,5 +48,23 @@ public class ColorsActivity extends AppCompatActivity {
         // the {@link ArrayAdapter} created above to populate the list.
         ListView colorsListView = (ListView) findViewById(R.id.word_list);
         colorsListView.setAdapter(colorsAdapter);
+
+        // Set an OnItemClickListener to handle all clicks and play the audio files
+        colorsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                final MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), audioResourceIDs[position]);
+                mediaPlayer.start();
+
+                // Set an OnCompletionListener to ensure the MediaPlayer object is released after use
+                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        mp.reset();
+                        mp.release();
+                    }
+                });
+            }
+        });
     }
 }

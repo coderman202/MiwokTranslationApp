@@ -1,8 +1,11 @@
 package com.example.android.miwok;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -14,6 +17,13 @@ public class PhrasesActivity extends AppCompatActivity {
 
     String[] phrasesArray, miwokPhrasesArray;
     ArrayList<Word> phrasesList;
+
+    Integer[] imageResourceIDs = {
+            R.drawable.speech_bubble_red, R.drawable.speech_bubble_blue,
+            R.drawable.speech_bubble_brown, R.drawable.speech_bubble_green,
+            R.drawable.speech_bubble_light_blue, R.drawable.speech_bubble_purple,
+            R.drawable.speech_bubble_yellow, R.drawable.speech_bubble_pink,
+            R.drawable.speech_bubble_grey, R.drawable.speech_bubble_orange};
 
     Integer[] audioResourceIDs = {
             R.raw.phrase_where_are_you_going, R.raw.phrase_what_is_your_name,
@@ -31,7 +41,7 @@ public class PhrasesActivity extends AppCompatActivity {
         // Store them in an ArrayList of Word objects
         phrasesArray = getResources().getStringArray(R.array.phrases_list);
         miwokPhrasesArray = getResources().getStringArray(R.array.miwok_phrases_list);
-        phrasesList = getWordArrayList(getWordArray(miwokPhrasesArray, phrasesArray, audioResourceIDs));
+        phrasesList = getWordArrayList(getWordArray(miwokPhrasesArray, phrasesArray, imageResourceIDs, audioResourceIDs));
 
         // Get the background color for this category and pass it to the WordAdapter along with
         // the ArrayList
@@ -40,7 +50,25 @@ public class PhrasesActivity extends AppCompatActivity {
 
         // Find the {@link ListView} object from the view hierarchy of the {@link Activity} and use
         // the {@link ArrayAdapter} created above to populate the list.
-        ListView numbersList = (ListView) findViewById(R.id.word_list);
-        numbersList.setAdapter(numbersAdapter);
+        ListView phrasesListView = (ListView) findViewById(R.id.word_list);
+        phrasesListView.setAdapter(numbersAdapter);
+
+        // Set an OnItemClickListener to handle all clicks and play the audio files
+        phrasesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                final MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), audioResourceIDs[position]);
+                mediaPlayer.start();
+
+                // Set an OnCompletionListener to ensure the MediaPlayer object is released after use
+                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        mp.reset();
+                        mp.release();
+                    }
+                });
+            }
+        });
     }
 }

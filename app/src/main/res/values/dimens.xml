@@ -15,17 +15,15 @@
 <resources>
     <!-- Height of each list item -->
     <dimen name="list_item_height">88dp</dimen>
-    <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <dimen name="category_item_padding">16dp</dimen>
-
+    <!--The size of the text in each list item, and the padding and height of each textview-->
     <dimen name="list_item_text_size">18sp</dimen>
     <dimen name="list_item_text_padding_start">16dp</dimen>
     <dimen name="list_item_textview_height">44dp</dimen>
 
     <!--Padding for the play button-->
     <dimen name="play_button_padding">25dp</dimen>
+
+    <dimen name="speech_bubble_height_width">24dp</dimen>
     
 </resources>
