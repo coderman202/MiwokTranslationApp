@@ -1,5 +1,6 @@
 package com.example.android.miwok;
 
+import android.media.MediaPlayer;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.Arrays;
  * A utility class to contain some common methods to be used throughout the project
  */
 
-public final class WordUtilities {
+final class WordUtilities {
 
     /**
      * A method to get an array of Word objects from two string arrays of  Miwok and a different
@@ -20,7 +21,7 @@ public final class WordUtilities {
      * @param audioResourceArray      An array of audio resource ids
      * @return returns an array of Word objects
      */
-    public static Word[] getWordArray(String[] miwokWordArray, String[] defaultTranslationArray, Integer[] audioResourceArray) {
+    static Word[] getWordArray(String[] miwokWordArray, String[] defaultTranslationArray, Integer[] audioResourceArray) {
         Word[] wordArray = new Word[miwokWordArray.length];
         for (int i = 0; i < wordArray.length; i++) {
             Log.d(miwokWordArray[i], defaultTranslationArray[i]);
@@ -40,7 +41,7 @@ public final class WordUtilities {
      * @param audioResourceArray      An array of audio file resource ids
      * @return returns an array of Word objects
      */
-    public static Word[] getWordArray(String[] miwokWordArray, String[] defaultTranslationArray, Integer[] imageResourceArray, Integer[] audioResourceArray) {
+    static Word[] getWordArray(String[] miwokWordArray, String[] defaultTranslationArray, Integer[] imageResourceArray, Integer[] audioResourceArray) {
         Word[] wordArray = new Word[miwokWordArray.length];
         for (int i = 0; i < wordArray.length; i++) {
             wordArray[i] = new Word(miwokWordArray[i], defaultTranslationArray[i], imageResourceArray[i], audioResourceArray[i]);
@@ -54,7 +55,24 @@ public final class WordUtilities {
      * @param wordArray Takes in an array of Word objects
      * @return returns an ArrayList of Word objects
      */
-    public static ArrayList<Word> getWordArrayList(Word[] wordArray) {
+    static ArrayList<Word> getWordArrayList(Word[] wordArray) {
         return new ArrayList<>(Arrays.asList(wordArray));
+    }
+
+    /**
+     * Clean up the media player by releasing its resources.
+     */
+    static void releaseMediaPlayer(MediaPlayer mp) {
+        // If the media player is not null, then it may be currently playing a sound.
+        if (mp != null) {
+            // Regardless of the current state of the media player, release its resources
+            // because we no longer need it.
+            mp.release();
+
+            // Set the media player back to null. For our code, we've decided that
+            // setting the media player to null is an easy way to tell that the media player
+            // is not configured to play an audio file at the moment.
+            mp = null;
+        }
     }
 }

@@ -22,7 +22,7 @@
     <dimen name="list_item_textview_height">44dp</dimen>
 
     <!--Padding for the play button-->
-    <dimen name="play_button_padding">25dp</dimen>
+    <dimen name="play_button_padding">16dp</dimen>
 
     <dimen name="speech_bubble_height_width">24dp</dimen>
     

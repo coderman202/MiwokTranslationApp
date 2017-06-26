@@ -1,5 +1,7 @@
 package com.example.android.miwok;
 
+import android.content.Context;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -12,6 +14,7 @@ import java.util.ArrayList;
 
 import static com.example.android.miwok.WordUtilities.getWordArray;
 import static com.example.android.miwok.WordUtilities.getWordArrayList;
+import static com.example.android.miwok.WordUtilities.releaseMediaPlayer;
 
 public class NumbersActivity extends AppCompatActivity {
 
@@ -29,10 +32,39 @@ public class NumbersActivity extends AppCompatActivity {
             R.raw.number_seven, R.raw.number_eight, R.raw.number_nine,
             R.raw.number_ten};
 
+    static MediaPlayer mediaPlayer =  null;
+
+    // Declare an instance of  AudioManager for managing any audio focus events
+    static AudioManager audioManager;
+
+    /**
+     * Create a listener.
+     * This listener is called whenever the audio focus changes
+     */
+    private AudioManager.OnAudioFocusChangeListener audioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {
+        @Override
+        public void onAudioFocusChange(int focusChange) {
+            if(focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT ||
+                    focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK){
+                mediaPlayer.pause();
+                mediaPlayer.seekTo(0);
+            }
+            else if(focusChange == AudioManager.AUDIOFOCUS_GAIN){
+                mediaPlayer.start();
+            }
+            else if(focusChange == AudioManager.AUDIOFOCUS_LOSS){
+                releaseMediaPlayer(mediaPlayer);
+            }
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_list);
+
+        // Setting an up button on the app bar to allow user to navigate back to the home screen
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         // Get the array of numbers in {@link String} form, then store it in an {@link ArrayAdapter}
         // Store them in an ArrayList of Word objects
@@ -50,22 +82,40 @@ public class NumbersActivity extends AppCompatActivity {
         ListView numbersListView = (ListView) findViewById(R.id.word_list);
         numbersListView.setAdapter(numbersAdapter);
 
+        // Initialise the AudioManager and ensure it can handle all AudioFocus events
+        audioManager = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
+
         // Set an OnItemClickListener to handle all clicks and play the audio files
+        // Make sure to also request audio focus when playing any sounds and handle when audio focus
+        // is granted
         numbersListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                final MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), audioResourceIDs[position]);
-                mediaPlayer.start();
+                releaseMediaPlayer(mediaPlayer);
+                int result = audioManager.requestAudioFocus(audioFocusChangeListener,
+                        AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
 
-                // Set an OnCompletionListener to ensure the MediaPlayer object is released after use
-                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mp) {
-                        mp.reset();
-                        mp.release();
-                    }
-                });
+                if(result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED){
+                    mediaPlayer = MediaPlayer.create(getApplicationContext(), audioResourceIDs[position]);
+                    mediaPlayer.start();
+
+                    // Set an OnCompletionListener to ensure the MediaPlayer object is released after use
+                    mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(MediaPlayer mp) {
+                            mp.reset();
+                            releaseMediaPlayer(mp);
+                        }
+                    });
+                }
             }
         });
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        releaseMediaPlayer(mediaPlayer);
+        audioManager.abandonAudioFocus(audioFocusChangeListener);
     }
 }
